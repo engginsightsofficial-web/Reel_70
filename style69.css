@@ -1,0 +1,225 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
+
+* {
+  margin: 10;
+  padding-right: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #030303;
+  --clr: #203360;
+  overflow: hidden;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  width: 300px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+  transition-delay: 0.5s;
+  animation: fadeInUp 1s ease-out;
+}
+
+.card:hover {
+  width: 600px;
+  transition-delay: 0.5s;
+}
+
+.card .circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes pulseGlow {
+
+  0%,
+  100% {
+    filter: drop-shadow(0 0 10px var(--clr)) drop-shadow(0 0 60px var(--clr));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 20px var(--clr)) drop-shadow(0 0 90px var(--clr));
+  }
+}
+
+.card .circle::before {
+  content: "";
+  position: absolute;
+  top: 30;
+  left: 2;
+  right: 2;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: #191919;
+  border: 8px solid var(--clr);
+  transition: 0.5s, background 0.5s;
+  transition-delay: 0.75s, 1s;
+  filter: drop-shadow(0 0 10px var(--clr)) drop-shadow(0 0 60px var(--clr));
+  animation: pulseGlow 3s infinite;
+}
+
+.card:hover .circle::before {
+  transition-delay: 0.5s;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  background: var(--clr);
+}
+
+.card .circle .logo {
+  position: relative;
+  width: 250px;
+  transition: 0.5s;
+  transition-delay: 0.5s;
+}
+
+.card:hover .circle .logo {
+  transform: scale(0);
+  transition-delay: 0s;
+}
+
+.card .product_img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0) rotate(315deg);
+  height: 300px;
+  transition: 0.5s ease-in-out;
+}
+
+.card:hover .product_img {
+  transition-delay: 0.75s;
+  top: 25%;
+  left: 75%;
+  height: 530px;
+  transform: translate(-50%, -50%) scale(1) rotate(15deg);
+}
+
+.card .content {
+  position: absolute;
+  width: 50%;
+  left: 20%;
+  padding: 20px 20px 20px 20px;
+  opacity: 0;
+  transition: 0.5s;
+  visibility: hidden;
+}
+
+.card:hover .content {
+  transition-delay: 0.75s;
+  opacity: 1;
+  visibility: visible;
+  left: 20px;
+}
+
+.card .content h2 {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 2.5em;
+  line-height: 1em;
+}
+
+.card .content p {
+  color: #fff;
+}
+
+.card .content a {
+  position: relative;
+  color: #fff;
+  background: #d52b1e;
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+}
+
+.card .content a:hover {
+  background: #fff;
+  color: #d52b1e;
+  box-shadow: 0 5px 15px rgba(213, 43, 30, 0.4);
+  transform: translateY(-3px);
+}
+
+.bubbles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bubbles span {
+  display: block;
+  width: 12px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  animation: animateBubbles calc(120s / var(--i)) linear infinite;
+}
+
+.bubbles span:nth-child(3n) {
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.bubbles span:nth-child(5n) {
+  width: 30px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.bubbles span:nth-child(even) {
+  animation-duration: calc(160s / var(--i));
+}
+
+@keyframes animateBubbles {
+  0% {
+    transform: translateY(100px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-120vh);
+    opacity: 0;
+  }
+}
